@@ -47,6 +47,9 @@ class TestCommand extends Command
                 $this->info('✓ [LaraBug] Sent exception to LaraBug!');
             } else {
                 $this->error('✗ [LaraBug] Failed to send exception to LaraBug');
+                if (isset($response->message)) {
+                    $this->error('✗ [LaraBug] Error: "' . $response->message . '"');
+                };
             }
         } catch (\Exception $ex) {
             $this->error("✗ [LaraBug] {$ex->getMessage()}");
